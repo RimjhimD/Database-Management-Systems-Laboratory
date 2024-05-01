@@ -1,1 +1,142 @@
+Important Queries for performance test-1: 
+SELECT * FROM employees;
+
+SELECT id, first_name, last_name, email FROM employees;
+
+SELECT id, first_name, last_name, email, designation, department FROM employees;
+
+SELECT id, first_name, last_name, email, designation, department, gender 
+FROM employees
+WHERE gender='Male';
+
+SELECT id, first_name, last_name, email, designation, department 
+FROM employees
+WHERE department='Computer Science and engineering';
+
+SELECT id, first_name, last_name, email, designation, department, gender
+FROM employees
+WHERE department='Computer Science and engineering' AND gender='Female';
+
+SELECT id, first_name, last_name, email, designation, department, gender
+FROM employees
+WHERE department='Computer Science and engineering' AND gender='Female' AND designation='software developer';
+
+SELECT id, first_name, last_name, email, designation, department, gender
+FROM employees
+WHERE designation='software developer' OR designation='Professor';
+
+SELECT id, CONCAT(first_name,' ', last_name), email, designation, department, gender
+FROM employees
+WHERE designation='software developer' OR designation='Professor';
+
+SELECT id, CONCAT(first_name,' ', last_name) AS full_name, email, designation, department, gender
+FROM employees
+WHERE designation='software developer' OR designation='Professor';
+
+SELECT id, CONCAT(first_name,' ', last_name) AS full_name, email AS email_address, designation, department, gender, salary
+FROM employees
+WHERE salary BETWEEN 172000 AND 200000;
+
+
+SELECT id, CONCAT(first_name,' ', last_name) AS full_name, email AS email_address, designation, department, gender, salary
+FROM employees
+WHERE salary BETWEEN 172000 AND 200000
+ORDER BY salary ASC;
+
+SELECT id, CONCAT(first_name,' ', last_name) AS full_name, email AS email_address, designation, department, gender, salary
+FROM employees
+WHERE salary BETWEEN 172000 AND 200000
+ORDER BY salary DESC;
+
+SELECT DISTINCT(country) FROM employees;
+
+SELECT first_name, last_name, country
+FROM employees
+where country='Germany' or country='France' or country='Italy';
+
+SELECT first_name, last_name, country
+FROM employees
+where country IN('Germany','France','Italy');
+
+SELECT first_name, last_name, country
+FROM employees
+where country NOT IN('Germany','France','Italy');
+
+SELECT first_name, last_name
+FROM employees
+where first_name LIKE 'a%o';
+
+SELECT first_name, last_name
+FROM employees
+where last_name LIKE '%dem%'; 
+
+SELECT first_name, last_name
+FROM employees
+where last_name LIKE 'dem%'; 
+
+SELECT first_name, last_name
+FROM employees
+where last_name LIKE '__r%'; 
+Queries Related to Date: 
+Show the 15th day information from current date
+SELECT ADDDATE(CURDATE(), INTERVAL 15 DAY); 
+
+Show some columns where joining date was june
+select first_name, last_name, joining_date, MONTHNAME(joining_date) 
+from employees
+where  MONTHNAME(joining_date)="June";
+
+Show some columns where joining date was either june or september or february
+select first_name, last_name, joining_date, MONTHNAME(joining_date) 
+from employees
+where  MONTHNAME(joining_date) IN ("June", "September", "February");
+
+alternate
+
+select first_name, last_name, joining_date, MONTH(joining_date) 
+from employees
+where  MONTH(joining_date) IN (6, 9, 2);
+
+Show some columns having birth date as the format: 28th June, 2022
+select first_name, last_name, birth_date, DATE_FORMAT(birth_date, "%D %M, %Y")
+from employees;
+Show total number of rows / total employees where joining date was either june or september or february
+select COUNT(*)
+from employees
+where  MONTHNAME(joining_date) IN ("June", "September", "February");
+
+Find the total number of employees whose date of birth is June and from computer science 
+select count(joining_date) 
+from employees
+where  MONTHNAME(birth_date)="June" and department="computer science and engineering";
+
+Find the average salary of employees whose date of birth is June and from computer science 
+select avg(salary) 
+from employees
+where  MONTHNAME(birth_date)="June" and department="computer science and engineering";
+
+Find the maximum salary of employees whose date of birth is June and from computer science 
+
+
+Find the minimum salary of employees whose date of birth is June and from computer science 
+
+
+Find the total salary of employees whose date of birth is June and from computer science 
+
+Find the maximum salary of each department
+select department, MAX(salary)
+from employees
+group by department;
+
+Find the minimum salary of each department
+select department, MIN(salary)
+from employees
+group by department;
+
+Show all department where minimum salary of each department is greater than 8100
+select department, MIN(salary)
+from employees
+group by department HAVING MIN(salary)>8100;
+
+
 
