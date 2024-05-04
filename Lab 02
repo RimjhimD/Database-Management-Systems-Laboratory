@@ -1,14 +1,17 @@
 1)SELECT ID, Semester FROM `student`;
 
+
 2)Retrieve Student’s name and id with CPGA = 4
 -> Select ID, Name 
 FROM student
 where GPA = '4';
 
+
 3)Fetch the ID of students with GPA more than 3.
 -> Select ID,GPA
 FROM student
 where GPA > '3';
+
 
 4)_____________ GPA in between 3 and 5.
 -> Select ID,GPA
@@ -19,7 +22,9 @@ Select ID,GPA
 FROM student
 where GPA BETWEEN '3' AND '5';
 
+
 5)Alter table student add mobile varchar(20);
+
 
 6)update student 
 set mobile = "+1233313"
